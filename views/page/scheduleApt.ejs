@@ -27,8 +27,7 @@
             <td><%= schedule.psn_sche_start_time %> - <%= schedule.psn_sche_end_time %></td>
             <td><%= schedule.rq_rsn %></td>
             <td>
-                <button>승인</button>
-                <button>거절</button>
+                <%= schedule.accept_op == 'A' ? '승인' : '거절' %>
             </td>
         </tr>
         <% }); %>
