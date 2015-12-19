@@ -5,9 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require("mysql");
-poo = mysql.createPool({
+pool = mysql.createPool({
   connectionLimit:5,
-  host:"::1",
+  host:"localhost",
   user:"root",
   password:"apmsetup",
   database:"dbs"

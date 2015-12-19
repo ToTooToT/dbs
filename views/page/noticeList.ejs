@@ -1,0 +1,24 @@
+<table class="table table-striped">
+        <thead>
+        <tr>
+                <th> No</th>
+                <th> 제목</th>
+                <th>작성자</th>
+                <th>등록일</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <%
+        var i = 1;
+                  rows.forEach(function(notice){
+        %>
+        <tr onclick="location.href='/notice/<%= notice.nid %>/<%= notice.writer%>'" style="cursor: pointer;">
+                <td> <%= i++%></td>
+                <td> <%= notice.title%></td>
+                <td><%= notice.writer%></td>
+                <td><%= notice.reg_date%></td>
+        </tr>
+        <% });%>
+        </tbody>
+</table>
