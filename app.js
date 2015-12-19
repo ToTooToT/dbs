@@ -4,11 +4,27 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mysql = require("mysql");
+poo = mysql.createPool({
+  connectionLimit:5,
+  host:"::1",
+  user:"root",
+  password:"apmsetup",
+  database:"dbs"
+});
+session = require("express-session");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+app.use(session({
+  secret: "keyboard cat",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {sercure: true}
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

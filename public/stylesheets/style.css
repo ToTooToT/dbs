@@ -1,8 +1,8 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.loginInfoT{
+  margin-top: 5px;
+}
+.loginInfo{
+  width: 150px;
+  top: 10px;
 }
 
-a {
-  color: #00B7FF;
-}
