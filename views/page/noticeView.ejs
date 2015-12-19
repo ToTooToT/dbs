@@ -1,0 +1,22 @@
+<table class="table table-bordered">
+        <%
+        var i=1;
+                  row.forEach(function(item, index){
+        %>
+        <tr>
+                <td class="col-lg-1">제목</td>
+                <td colspan="3"><%= item.title%></td>
+        </tr>
+
+        <tr>
+                <td>작성자</td>
+                <td><%= item.admin_num%></td>
+                <td class="col-lg-1">등록일</td>
+                <td><%= item.reg_date%></td>
+        </tr>
+        <tr>
+                <td style="vertical-align: middle;">내용</td>
+                <td colspan="3"><br><%= item.content%><br><br></td>
+        </tr>
+        <% });%>
+</table>
