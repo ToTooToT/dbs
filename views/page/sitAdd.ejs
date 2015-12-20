@@ -1,0 +1,23 @@
+<% layout('../index') %>
+<div class="border-head" style="">
+    <h2>
+        <%= title %>
+    </h2>
+<br></div>
+<div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+    <form action="/sitAdd" method="post">
+        학번<input type="text" name="s_num"/><br>
+        학년<input type="text" name="grade"/><br>
+        이름<input type="text" name="s_name"/><br>
+        비밀번호<input type="text" name="s_pw"/><br>
+        소속<input type="text" name="major_num"/><br>
+        지문<input type="text" name="fp"/><button>등록</button><br>
+        전화번호<input type="text" name="phone"/><br>
+        이메일<input type="text" name="email"/><br>
+        자리번호<input type="text" name="enter_out_sit"/><br>
+        담당교수<input type="text" name="p_num"/><br>
+        연구실<input type="text" name="lab_num"/><br>
+        <button type="submit" onclick="location.href='/addSit'">자리등록</button>
+        <button onclick="location.href='/'">취소</button>
+    </form>
+</div>

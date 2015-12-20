@@ -1,0 +1,33 @@
+<% layout('../index') %>
+<div class="border-head" style="">
+        <h2>
+                <%= title %>
+        </h2>
+</div>
+<form action="timeInsert2" method="post" style="text-align: center;">
+        <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+                <table class="table table-bordered">
+                        <tr>
+                                <td><strong>시간</strong></td>
+                                <td>월</td>
+                                <td>화</td>
+                                <td>수</td>
+                                <td>목</td>
+                                <td>금</td>
+                        </tr>
+                        <%
+                        for(var i=9; i<=21; i++){
+                        %>
+                        <tr>
+                                <td><%=i%>~<%=i+1%></td>
+                                <td><input type="checkbox" name="mon<%=i%>" style="width: 23px; height: 23px;" id="blankCheckbox" value="option1" aria-label="..."></td>
+                                <td><input type="checkbox" name="tue<%=i%>" style="width: 23px; height: 23px;" id="blankCheckbox" value="option1" aria-label="..."></td>
+                                <td><input type="checkbox" name="wed<%=i%>" style="width: 23px; height: 23px;" id="blankCheckbox" value="option1" aria-label="..."></td>
+                                <td><input type="checkbox" name="thu<%=i%>" style="width: 23px; height: 23px;" id="blankCheckbox" value="option1" aria-label="..."></td>
+                                <td><input type="checkbox" name="fri<%=i%>" style="width: 23px; height: 23px;" id="blankCheckbox" value="option1" aria-label="..."></td>
+                        </tr>
+                        <% }%>
+                </table>
+        </div>
+        <button type="submit" class="btn btn-info" style="width: 13%; margin: 0 auto;">다음</button>
+</form>

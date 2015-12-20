@@ -1,0 +1,32 @@
+<% layout('../index') %>
+<div class="border-head" style="">
+    <h2>
+        <%= title %>
+    </h2>
+</div>
+<div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>스케줄명</th>
+            <th>스케줄시작날짜 - 스케줄종료날짜</th>
+            <th>시작시간 - 종료시간</th>
+            <th>등록자</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <%
+        var i = 1;
+                rows.forEach(function(schedule){
+        %>
+        <tr style="cursor: pointer;">
+            <td> <%= schedule.sche_name %></td>
+            <td><%= formatDates(schedule.ofc_sche_start_date) %> - <%= formatDates(schedule.ofc_sche_end_date) %></td>
+            <td><%= schedule.ofc_sche_start_time %> - <%= schedule.ofc_sche_end_time %></td>
+            <td><%= schedule.admin_name %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>

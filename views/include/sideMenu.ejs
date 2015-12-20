@@ -3,56 +3,114 @@
   *********************************************************************************************************************************************************** -->
 <!--sidebar start-->
 <aside>
-        <div id="sidebar"  class="nav-collapse ">
-                <!-- sidebar menu start-->
-                <ul class="sidebar-menu" id="nav-accordion">
+    <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
 
-                        <p class="centered"><a href="profile.html"><img src="/assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-                        <h5 class="centered">Marcel Newman</h5>
-
-                        <li class="sub-menu">
-                                <a class="active" href="javascript;">
-                                        <i class="fa fa-dashboard"></i>
-                                        <span>스케줄관리</span>
-                                </a>
-                                <ul class="sub">
-                                        <li><a  href="#">- 승인요청확인</a></li>
-                                        <li><a  href="#">- 승인현황</a></li>
-                                        <li><a  href="#">- 거절현황</a></li>
-                                        <li><a  href="#">- 공식스케줄등록</a></li>
-                                        <li><a  href="#">- 공식스케줄현황</a></li>
-                                </ul>
-                        </li>
-
-                        <li class="sub-menu">
-                                <a href="javascript:;" >
-                                        <i class="fa fa-desktop"></i>
-                                        <span>입퇴실관리</span>
-                                </a>
-                                <ul class="sub">
-                                        <li><a  href="#">- 자리등록</a></li>
-                                        <li><a  href="#">- 입실대기자 관리</a></li>
-                                        <li><a  href="#">- 자리사용 유/무</a></li>
-                                        <li><a  href="#">- 퇴실신청서 확인</a></li>
-                                        <li><a  href="#">- 퇴실자 관리</a></li>
-                                </ul>
-                        </li>
-
-                        <li class="sub-menu">
-                                <a href="javascript:;" >
-                                        <i class="fa fa-cogs"></i>
-                                        <span>출결통계</span>
-                                </a>
-                        </li>
-                        <li class="sub-menu">
-                                <a href="javascript:;" >
-                                        <i class="fa fa-book"></i>
-                                        <span>환경설정</span>
-                                </a>
-                        </li>
-
+            <p class="centered"><a href="profile.html"><img src="/assets/img/ui-sam.jpg" class="img-circle" width="60"></a>
+            </p>
+            <h5 class="centered"><%=name%></h5>
+            <%
+            if(mode=="admin"){
+            %>
+            <!-- --------------------관리자메뉴----------------------- -->
+            <li class="sub-menu"  class="active">
+                <a href="javascript;">
+                    <i class="fa fa-dashboard"></i>
+                    <span>스케줄관리</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="/scheduleReq">- 승인요청확인</a></li>
+                    <li><a href="/scheduleAptA">- 승인현황</a></li>
+                    <li><a href="/scheduleAptR">- 거절현황</a></li>
+                    <li><a href="/offScheduleAdd">- 공식스케줄등록</a></li>
+                    <li><a href="/offScheduleList">- 공식스케줄현황</a></li>
                 </ul>
-                <!-- sidebar menu end-->
-        </div>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-desktop"></i>
+                    <span>입퇴실관리</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="/sitAdd">- 자리등록</a></li>
+                    <li><a href="/enterOutList">- 입실대기자 관리</a></li>
+                    <li><a href="#">- 자리사용 유/무</a></li>
+                    <li><a href="#">- 퇴실신청서 확인</a></li>
+                    <li><a href="#">- 퇴실자 관리</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-cogs"></i>
+                    <span>출결통계</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>환경설정</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="#">- 학기/방학 모드설정</a></li>
+                    <li><a href="#">- 교수계정 등록</a></li>
+                    <li><a href="#">- 퇴실 위험자 알림</a></li>
+                </ul>
+            </li>
+            <!-- --------------------관리자메뉴----------------------- -->
+            <%
+            }else if(mode=="student") {
+            %>
+            <!-- --------------------학 생 메뉴----------------------- -->
+            <li class="sub-menu"  class="active">
+                <a href="javascript;">
+                    <i class="fa fa-dashboard"></i>
+                    <span>시간표</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="/student/timeInsert">- 시간표확인</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-desktop"></i>
+                    <span>스케줄관리</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="student/scheduleInsert">- 스케줄등록</a></li>
+                    <li><a href="student/schedulePresent">- 스케줄현황</a></li>
+                </ul>
+            </li>
+
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-cogs"></i>
+                    <span>출결햔황</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="/attendChk">- 출결조회</a></li>
+                </ul>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-book"></i>
+                    <span>퇴실신청</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="outFrom">- 신청서작성</a></li>
+                </ul>
+            </li>
+            <!-- --------------------학 생 메뉴----------------------- -->
+            <%
+            }else{
+
+            }
+            %>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
 </aside>
 <!--sidebar end-->
