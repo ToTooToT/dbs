@@ -27,8 +27,8 @@
             <td><%= schedule.psn_sche_start_time %> - <%= schedule.psn_sche_end_time %></td>
             <td><%= schedule.rq_rsn %></td>
             <td>
-                <button>승인</button>
-                <button>거절</button>
+                <button onclick="location.href='/scheduleReq/<%= schedule.s_num %>/<%= formatDB(schedule.psn_sche_rq_date) %>/A'">승인</button>
+                <button onclick="location.href='/scheduleReq/<%= schedule.s_num %>/<%= formatDB(schedule.psn_sche_rq_date) %>/R'">거절</button>
             </td>
         </tr>
         <% }); %>

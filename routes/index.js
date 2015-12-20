@@ -46,7 +46,7 @@ router.get('/notice/:nid/:writer', function (req, res, next) {
 
 router.get('/scheduleReq', function (req, res, next) {
     if (req.session.user) {
-        var sql = "select * from personal_schedule";
+        var sql = "select * from personal_schedule where psn_sche_hd_date is null";
         pool.getConnection(function (err, conn) {
             conn.query(sql, function (err, rows) {
                 res.render('page/scheduleReq', {
@@ -54,6 +54,26 @@ router.get('/scheduleReq', function (req, res, next) {
                     rows: rows,
                     name: req.session.user[0].admin_name
                 });
+            });
+            conn.release();
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+router.get('/scheduleReq/:s_num/:psn_sche_rq_date/:accept_op', function (req, res, next) {
+    if (req.session.user) {
+        var s_num = req.params.s_num;
+        var psn_sche_rq_date = req.params.psn_sche_rq_date;
+        var accept_op = req.params.accept_op;
+        var date = new Date();
+        var phdDate = [date, accept_op, s_num, psn_sche_rq_date]
+        pool.getConnection(function (err, conn) {
+            var sql = "update personal_schedule set psn_sche_hd_date = ?, accept_op = ? where s_num = ? and psn_sche_rq_date = ?";
+            conn.query(sql, phdDate, function (err, rows) {
+                if(err) console.log("err : "+ err);
+                res.redirect('/scheduleReq');
             });
             conn.release();
         });
@@ -101,8 +121,32 @@ router.get('/scheduleAptR', function (req, res, next) {
 router.get('/offScheduleAdd', function (req, res, next) {
     if (req.session.user) {
         res.render('page/offScheduleAdd', {
-            title: '스케줄거절현황',
+            title: '공식스케줄등록',
             name: req.session.user[0].admin_name
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+router.post('/offScheduleAdd', function (req, res, next) {
+    if (req.session.user) {
+        var sche_name = req.body.sche_name,
+            ofc_sche_start_date = req.body.ofc_sche_start_date,
+            ofc_sche_end_date = req.body.ofc_sche_end_date,
+            ofc_sche_start_time = req.body.ofc_sche_start_time,
+            ofc_sche_end_time = req.body.ofc_sche_end_time,
+            date = new Date();
+        var scheduleData = [req.session.user[0].admin_num, sche_name, ofc_sche_start_date, ofc_sche_end_date, ofc_sche_start_time, ofc_sche_end_time, date];
+        //var stuScheData = [s_num, date, enter_out_sit]; 학생추가 아직 안됨@@
+        pool.getConnection(function (err, connection) {
+            var sql = "insert into official_schedule values('', ?, ?, ?, ?, ?, ?, ?);";
+            connection.query(sql, scheduleData, function (err, rows) {
+                if (err) console.error("err : " + err);
+                console.log("rows : " + JSON.stringify(rows));
+            });
+            res.redirect('/offScheduleList');
+            connection.release();
         });
     } else {
         res.render('login');
@@ -128,14 +172,100 @@ router.get('/offScheduleList', function (req, res, next) {
 });
 
 
-//
-//router.get('/index', function(req, res, next) {
-//  //if(req.session.userId){
-//  //  res.render('index', { title: 'Express' });
-//  //}else{
-//  //  res.render('login', { title: 'Login' });
-//  //}
-//  res.render('index', { title: 'Express' });
-//});
+router.get('/sitAdd', function (req, res, next) {
+    if (req.session.user) {
+        res.render('page/sitAdd', {
+            title: '학생자리등록',
+            name: req.session.user[0].admin_name
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+router.post('/sitAdd', function (req, res, next) {
+    if (req.session.user) {
+        var s_num = req.body.s_num,
+            grade = req.body.grade,
+            s_name = req.body.s_name,
+            s_pw = req.body.s_pw,
+            major_num = req.body.major_num,
+            fp = req.body.fp,
+            phone = req.body.phone,
+            email = req.body.email,
+            enter_out_sit = req.body.enter_out_sit,
+            p_num = req.body.p_num,
+            lab_num = req.body.lab_num,
+            date = new Date();
+        var studentData = [s_num, lab_num, p_num, major_num, s_pw, grade, s_name, email, phone, fp];
+        var enterOutData = [s_num, date, enter_out_sit];
+        pool.getConnection(function (err, connection) {
+            var sql = "insert into student values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'S');";
+            connection.query(sql ,studentData, function (err, rows) {
+                if (err) console.error("err : " + err);
+                console.log("rows : " + JSON.stringify(rows));
+            });
+            var sql = "insert into enter_out_career values(?, ?, null, ?, null, null, null, null, null);";
+            connection.query(sql ,enterOutData, function (err, rows) {
+                if (err) console.error("err : " + err);
+                console.log("rows : " + JSON.stringify(rows));
+            });
+            res.redirect('/sitAdd');
+            connection.release();
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+router.get('/enterOutList', function (req, res, next) {
+    if (req.session.user) {
+        pool.getConnection(function (err, conn) {
+            var sql = "select * from enter_out_career e, student s where e.s_num = s.s_num and enter_hd_date is null";
+            conn.query(sql, function (err, rows) {
+                res.render('page/enterOutList', {
+                    title: '입실대기자관리',
+                    rows: rows,
+                    name: req.session.user[0].admin_name
+                });
+            });
+            conn.release();
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+router.post('/enterOutList/:s_num', function (req, res, next) {
+    if (req.session.user) {
+        var pjr_num = req.body.pjr_num;
+        var sit_num = req.body.sit_num;
+        var s_num = req.params.s_num;
+        var date = new Date();
+        var sitUpData = [s_num, sit_num, pjr_num];
+        console.log(sitUpData);
+        pool.getConnection(function (err, conn) {
+            var sql = "update sit set s_num = ? where sit_num = ? and pjr_num = ?;";
+            conn.query(sql, sitUpData, function (err, rows) {
+                console.log(rows);
+            });
+            var sql = "update student set state = 'I' where s_num = ?;";
+            conn.query(sql, s_num, function (err, rows) {
+                console.log(rows);
+            });
+            var sql = "update enter_out_career set enter_hd_date = ? where s_num = ?;";
+            conn.query(sql, [date, s_num], function (err, rows) {
+                console.log(rows);
+            });
+            res.redirect('/enterOutList');
+            conn.release();
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+
+
 
 module.exports = router;

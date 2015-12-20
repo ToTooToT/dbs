@@ -37,6 +37,9 @@ app.locals.formatDates = function(date) {
 app.locals.formatDateTimes = function(date) {
     return moment(date).format('YYYY. MM. DD.  hh:mm:ss');
 }
+app.locals.formatDB= function(date) {
+    return moment(date).format('YYYY-MM-DD hh:mm:ss');
+}
 
 app.engine('ejs', engine);
 

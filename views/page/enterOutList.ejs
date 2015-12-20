@@ -1,0 +1,40 @@
+<% layout('../index') %>
+<div class="border-head" style="">
+    <h2>
+        <% title %>
+    </h2>
+</div>
+<div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th> 학번</th>
+            <th> 이름</th>
+            <th>좌석</th>
+            <th>신청일</th>
+            <th>승인</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <%
+        var i = 1;
+                rows.forEach(function(eoLists){
+        %>
+        <tr style="cursor: pointer;">
+            <td> <%= eoLists.s_num %></td>
+            <td> <%= eoLists.s_name %></td>
+            <td><%= eoLists.enter_out_sit %></td>
+            <td><%= formatDateTimes(eoLists.enter_rq_date) %></td>
+            <td>
+                <form action="enterOutList/<%= eoLists.s_num %>" method="post">
+                    프로젝트룸<input type="text" name="pjr_num"/>
+                    좌석<input type="text" name="sit_num"/>
+                    <button type="submit">승인</button>
+                </form>
+            </td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
