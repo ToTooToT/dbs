@@ -1,0 +1,40 @@
+<% layout('../index') %>
+<div class="border-head" style="">
+    <h2>
+        <% title %>
+    </h2>
+</div>
+<div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th> 학번</th>
+            <th> 이름</th>
+            <th>사유</th>
+            <th>기자재 반납 여부</th>
+            <th>승인</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <%
+        var i = 1;
+                rows.forEach(function(eoLists){
+        %>
+        <form action="/outReqList/<%= eoLists.s_num %>/<%= formatDB(eoLists.enter_rq_date) %>" method="post">
+            <tr style="cursor: pointer;">
+                <td> <%= eoLists.s_num %></td>
+                <td> <%= eoLists.s_name %></td>
+                <td><%= eoLists.out_rsn %></td>
+                <td>
+                    <%= eoLists.equipment %>
+                </td>
+                <td>
+                    <button type="submit">승인</button>
+                </td>
+            </tr>
+        </form>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
