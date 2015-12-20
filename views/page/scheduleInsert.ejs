@@ -1,19 +1,23 @@
 <% layout('../index') %>
 <div class="border-head" style="">
-        <h2><i class="fa fa-angle-right"></i><%= title %></h2>
+    <h2><i class="fa fa-angle-right"></i><%= title %></h2>
 </div>
-<form action="" style="text-align: center;">
-<div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+<form action="scheduleInsert" method="post" style="text-align: center;">
+    <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
         <table class="table table-bordered">
-                <tr>
-                        <td>기간</td>
-                        <td align="left"><input type="date" name="scheduleStartDate" style="width: 25%; height: 25px;" />부터 ~ <input type="date" name="scheduleEndDate" style="width: 25%; height: 25px;" />까지</td>
-                </tr>
-                <tr>
-                        <td>사유</td>
-                        <td align="left"><textarea name="scheduleTxt" id="" style="width: 100%" rows="15"></textarea></td>
-                </tr>
+            <tr>
+                <td>기간</td>
+                <td align="left"><input type="date" name="scheduleStartDate" style="width: 25%; height: 25px;"/>부터 ~
+                    <input type="date" name="scheduleEndDate" style="width: 25%; height: 25px;"/>까지<br>
+                    <input type="time" name="scheduleStartTime" style="width: 25%; height: 25px;"/>부터 ~
+                    <input type="time" name="scheduleEndTime" style="width: 25%; height: 25px;"/>까지
+                </td>
+            </tr>
+            <tr>
+                <td>사유</td>
+                <td align="left"><textarea name="scheduleTxt" id="" style="width: 100%" rows="15"></textarea></td>
+            </tr>
         </table>
-</div>
-        <button type="button" class="btn btn-success" style="width: 13%; margin: 0 auto;">완료</button>
+    </div>
+    <button type="submit" class="btn btn-success" style="width: 13%; margin: 0 auto;">완료</button>
 </form>

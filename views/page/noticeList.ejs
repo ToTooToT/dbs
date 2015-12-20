@@ -19,7 +19,7 @@
         %>
         <% if (mode == 'admin') { %>
         <tr onclick="location.href='/notice/<%= notice.nid %>/<%= notice.writer %>'" style="cursor: pointer;">
-            <% } else if (mode == 'student') { console.log(notice.nid) %>
+            <% } else if (mode == 'student') { %>
         <tr onclick="location.href='/student/notice/<%= notice.nid %>/<%= notice.writer %>'" style="cursor: pointer;">
             <% } else { %>
         <tr onclick="location.href='/notice/<%= notice.nid %>/<%= notice.writer %>'" style="cursor: pointer;">
