@@ -81,4 +81,26 @@ router.get('/schedulePresent', function (req, res, next) {
 });
 
 
+router.get('/attendChk', function (req, res, next) {
+
+    res.render('page/attendChk', {
+        title: '출결현황',
+        name: req.session.user[0].admin_name,
+        mode: req.session.grade
+    });
+
+});
+
+
+router.get('/outForm', function (req, res, next) {
+
+    res.render('page/outForm', {
+        title: '퇴실신청서',
+        name: req.session.user[0].admin_name,
+        mode: req.session.grade
+    });
+
+});
+
+
 module.exports = router;
