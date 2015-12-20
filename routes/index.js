@@ -276,15 +276,54 @@ router.post('/enterOutList/:s_num', function (req, res, next) {
     }
 });
 
+router.get('/outReqList', function (req, res, next) {
+    if (req.session.user) {
+        pool.getConnection(function (err, conn) {
+            var sql = "select * from enter_out_career e, student s where e.s_num = s.s_num and out_rq_date is not null and out_hd_date is null";
+            conn.query(sql, function (err, rows) {
+                res.render('page/outReqList', {
+                    title: '퇴실대기자관리',
+                    rows: rows,
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
+                });
+            });
+            conn.release();
+        });
+    } else {
+        res.render('login');
+    }
+});
+
+router.post('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
+    if (req.session.user) {
+        var s_num = req.params.s_num,
+            enter_rq_date = req.params.enter_rq_date,
+            date = new Date();
+        var eoUpdata = [date, s_num, enter_rq_date];
+        pool.getConnection(function (err, conn) {
+            var sql = "update enter_out_career set out_hd_date = ?, fc_out_op = 'N' where s_num = ? and enter_rq_date = ?";
+            conn.query(sql, eoUpdata, function (err, rows) {
+                console.log("err : " + err);
+            });
+            var sql = "update student set state = 'O' where s_num = ?";
+            conn.query(sql, [s_num], function (err, rows) {
+                console.log("err : " + err);
+            });
+            res.redirect('/outReqList');
+            conn.release();
+        });
+    } else {
+        res.render('login');
+    }
+});
 
 router.get('/scheduleInsert', function (req, res, next) {
-
     res.render('page/timeInsert', {
         title: '시간표등록',
         name: req.session.user[0].admin_name,
         mode: req.session.grade
     });
-
 });
 
 module.exports = router;
