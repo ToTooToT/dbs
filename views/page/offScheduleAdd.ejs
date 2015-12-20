@@ -2,27 +2,26 @@
 <div class="border-head" style="">
     <h2><i class="fa fa-angle-right"></i><%= title %></h2>
 </div>
-<div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+
     <form action="/offScheduleAdd" method="post">
+        <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
         <table class="table table-bordered">
             <tr>
                 <td class="col-lg-1">제목</td>
-                <td colspan="4"><input type="text" name="sche_name"/></td>
+                <td class="col-lg-4"><input type="text" name="sche_name"/></td>
+                <td class="col-lg-1">작성자</td>
+                <td class="col-lg-4"><%=name%></td>
             </tr>
 
             <tr>
-                <td>작성자</td>
-                <td class="col-lg-1">공식스케줄시작날짜</td>
-                <td class="col-lg-1">공식스케줄종료날짜</td>
-                <td class="col-lg-1">공식스케줄시작시간</td>
-                <td class="col-lg-1">공식스케줄종료시간</td>
-            </tr>
-            <tr>
-                <td><%= name %></td>
-                <td><input type="text" name="ofc_sche_start_date"/></td>
-                <td><input type="text" name="ofc_sche_end_date"/></td>
-                <td><input type="text" name="ofc_sche_start_time"/></td>
-                <td><input type="text" name="ofc_sche_end_time"/></td>
+                <td class="col-lg-1">공식스케줄기간</td>
+                <td class="col-lg-4">
+                    <input type="date" style="height: 25px;" name="ofc_sche_start_date"/>부터 ~ <input type="date" style="height: 25px;" name="ofc_sche_end_date"/>까지
+                </td>
+                <td class="col-lg-1">공식스케줄시간</td>
+                <td class="col-lg-1">
+                    <input type="time" style="height: 25px;" name="ofc_sche_start_time"/> ~ <input type="time" style="height: 25px;" name="ofc_sche_end_time"/>
+                </td>
             </tr>
             <tr>
                 <td style="vertical-align: middle;">참여학생</td>
@@ -33,6 +32,7 @@
                 </td>
             </tr>
         </table>
-        <button type="submit">등록</button>
+    </div>
+        <button type="button" class="btn btn-default" style="width: 13%; margin: 0 auto;">뒤로</button>
+        <button type="button" class="btn btn-success" style="width: 13%; margin: 0 auto;">완료</button>
     </form>
-</div>

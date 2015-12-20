@@ -296,7 +296,7 @@ router.get('/outReqList', function (req, res, next) {
     }
 });
 
-router.post('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
+router.get('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
     if (req.session.user) {
         var s_num = req.params.s_num,
             enter_rq_date = req.params.enter_rq_date,
@@ -322,6 +322,14 @@ router.post('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
 router.get('/scheduleInsert', function (req, res, next) {
     res.render('page/timeInsert', {
         title: '시간표등록',
+        name: req.session.user[0].admin_name,
+        mode: req.session.grade
+    });
+});
+
+router.get('/warningMsg', function (req, res, next) {
+    res.render('page/warningMsg', {
+        title: '퇴실위험자 알림',
         name: req.session.user[0].admin_name,
         mode: req.session.grade
     });

@@ -13,9 +13,12 @@ router.post('/login', function (req, res, next) {
     var id = req.body.mId;
     var pw = req.body.mPw;
     var count = 1;
+    var data = [id, pw];
+    console.log("OoO");
     pool.getConnection(function (err, connection) {
         var sql = "select *, count(*) cnt from student where s_num=? and s_pw=?";
         connection.query(sql, [id, pw], function (err, rows) {
+            console.log("OoO");
             count++;
             if (err) console.log("Error: " + err);
             if (rows[0].cnt === 1) {
