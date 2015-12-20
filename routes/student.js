@@ -257,6 +257,7 @@ router.post('/scheduleInsert', function (req, res, next) {
                 console.log("rows : " + JSON.stringify(rows));
             });
             res.redirect('/student/schedulePresent');
+            connection.release();
         });
     } else {
         res.redirect('/');
@@ -265,11 +266,20 @@ router.post('/scheduleInsert', function (req, res, next) {
 
 router.get('/schedulePresent', function (req, res, next) {
     if (req.session.user) {
-
-        res.render('page/schedulePresent', {
-            title: '개인스케줄현황',
-            name: req.session.user[0].s_name,
-            mode: req.session.grade
+        var s_num = req.session.user[0].s_num;
+        pool.getConnection(function (err, connection) {
+            var sql = "select * from personal_schedule where s_num = ?";
+            connection.query(sql, [s_num], function (err, rows) {
+                if (err) console.error("err : " + err);
+                console.log("rows : " + JSON.stringify(rows));
+                res.render('page/schedulePresent', {
+                    title: '개인스케줄현황',
+                    rows: rows,
+                    name: req.session.user[0].s_name,
+                    mode: req.session.grade
+                });
+            });
+            connection.release();
         });
     } else {
         res.redirect('/');

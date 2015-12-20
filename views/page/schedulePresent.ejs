@@ -1,24 +1,28 @@
 <% layout('../index') %>
 <div class="border-head" style="">
-        <h2><i class="fa fa-angle-right"></i><%= title %></h2>
+    <h2><i class="fa fa-angle-right"></i><%= title %></h2>
 </div>
 <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
-        <table class="table table-striped">
-                <thead>
-                <tr>
-                        <th> 신청일</th>
-                        <th> 사유</th>
-                        <th>처리일</th>
-                        <th>승인여부</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr onclick="location.href=''" style="cursor: pointer;">
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                </tr>
-                </tbody>
-        </table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th> 신청일</th>
+            <th> 사유</th>
+            <th>처리일</th>
+            <th>승인여부</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            rows.forEach(function(schedule){
+        %>
+        <tr style="cursor: pointer;">
+            <td><%= formatDateTimes(schedule.psn_sche_rq_date) %></td>
+            <td><%= schedule.rq_rsn %></td>
+            <td><%= schedule.psn_sche_hd_date==null?'처리안됨':formatDateTimes(schedule.psn_sche_hd_date) %></td>
+            <td><%= schedule.accept_op==null?'처리안됨':schedule.accept_op %></td>
+        </tr>
+        <% }); %>
+        </tbody>
+    </table>
 </div>
