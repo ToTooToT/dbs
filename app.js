@@ -12,9 +12,9 @@ var engine = require('ejs-locals');
 
 pool = mysql.createPool({
     connectionLimit:5,
-  host:"localhost",
+  host:"::1",
   user:"root",
-  password:"apmsetup",
+  password:"",
   database:"dbs"
 });
 session = require("express-session");

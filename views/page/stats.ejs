@@ -1,200 +1,159 @@
 <% layout('../index') %>
 <div class="border-head" style="">
-        <h2><i class="fa fa-angle-right"></i><%= title %></h2>
+    <h2><i class="fa fa-angle-right"></i><%= title %></h2>
 </div>
 <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA; padding: 2% 1%; text-align: center;">
 
-        <div style="clear:both; margin-top:12px; width:100%;">
-                <div class="container"  style="width:100%; padding:0;">
-                        <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#menu1">동화</a></li>
-                                <li><a data-toggle="tab" href="#menu2">소설</a></li>
-                        </ul>
+    <div style="clear:both; margin-top:12px; width:100%;">
+        <div class="container" style="width:100%; padding:0;">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#menu1">통계</a></li>
+                <li><a data-toggle="tab" href="#menu2">활용률</a></li>
+            </ul>
 
-                        <div class="tab-content">
-                                <div id="menu1" class="tab-pane fade in active">
-                                        <div>
-                                                <div class="radio">
-                                                        <label>
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="all" checked>
-                                                                전체　
-                                                        </label>
-                                                        <label>
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="labs">
-                                                                연구실　
-                                                        </label>
-                                                        <label>
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="major">
-                                                                전공　
-                                                        </label>
-                                                        <label>
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="pro">
-                                                                지도교수　
-                                                        </label>
-                                                        <label>
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="room">
-                                                                프로젝트실　
-                                                        </label><label>
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="grade">
-                                                                학년　
-                                                        </label>
-                                                        <label>
-                                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="std">
-                                                                학생　
-                                                        </label>
-                                                        <label>
-                                                                <input type="text" name="key" placeholder="학번 또는 이름"  value="">
-                                                                <button class="btn btn-default" type="submit" style="height: 25px; font-size: 0.75em;">검색</button>　
-                                                        </label>
-                                                </div>
-                                        <table>
-                                                <tr>
-                                                        <td>
-                                                                <div>
-                                                                        <input type="date" name="scheduleStartDate" style="height: 25px;"/> ~
-                                                                        <input type="date" name="scheduleEndDate" style="height: 25px;"/>
-                                                                </div>
-                                                                <div style="border: 1px solid #A4AABA; height: 200px; overflow: scroll;">
-                                                                        <table class="table table-striped">
-                                                                                <thead>
-                                                                                <tr>
-                                                                                        <th>학번</th>
-                                                                                        <th>이름</th>
-                                                                                        <th>학년</th>
-                                                                                        <th>전체출석률</th>
-                                                                                </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                <tr>
-                                                                                        <td>20131111</td>
-                                                                                        <td>홍길동</td>
-                                                                                        <td>3</td>
-                                                                                        <td>79%</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>20131111</td>
-                                                                                        <td>홍길동</td>
-                                                                                        <td>3</td>
-                                                                                        <td>79%</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>20131111</td>
-                                                                                        <td>홍길동</td>
-                                                                                        <td>3</td>
-                                                                                        <td>79%</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>20131111</td>
-                                                                                        <td>홍길동</td>
-                                                                                        <td>3</td>
-                                                                                        <td>79%</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>20131111</td>
-                                                                                        <td>홍길동</td>
-                                                                                        <td>3</td>
-                                                                                        <td>79%</td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                        <td>20131111</td>
-                                                                                        <td>홍길동</td>
-                                                                                        <td>3</td>
-                                                                                        <td>79%</td>
-                                                                                </tr>
-                                                                                </tbody>
-                                                                        </table>
-                                                                </div>
-                                                        </td>
-                                                        <td>
-                                                                        <div style="display: inline-block; margin-right: 5px; text-align: center;">
-                                                                                <table class="table table-bordered" style="width: 550px; height: 200px;">
-                                                                                        <tr style="cursor: pointer;">
-                                                                                                <td class="col-md-5">전체 출석률</td>
-                                                                                                <td class="col-lg-9">72%</td>
-                                                                                        </tr>
-                                                                                        <tr style="cursor: pointer;">
-                                                                                                <td>공식스케줄 제외</td>
-                                                                                                <td>72%</td>
-                                                                                        </tr>
-                                                                                        <tr style="cursor: pointer;">
-                                                                                                <td>개인스케줄 제외</td>
-                                                                                                <td>72%</td>
-                                                                                        </tr>
-                                                                                        <tr style="cursor: pointer;">
-                                                                                                <td>순수 출석률</td>
-                                                                                                <td>72%</td>
-                                                                                        </tr>
-                                                                                </table>
-                                                                        </div>
-                                                        </td>
-                                                </tr>
-                                        </table>
-                                        </div>
-                                </div>
-                                <div id="menu2" class="tab-pane fade">
-                                        <div class="radio">
-                                                <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="all" checked>
-                                                        전체　
-                                                </label>
-                                                <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="labs">
-                                                        UIT 102　
-                                                </label>
-                                                <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="major">
-                                                        UIT 202　
-                                                </label>
-                                                <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="pro">
-                                                        UIT 302　
-                                                </label>
-                                                <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="room">
-                                                        산학5301　
-                                                </label><label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="grade">
-                                                        산학5302　
-                                                </label>
-                                                <label>
-                                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="std">
-                                                        산학5304　
-                                                </label>
-                                                <label>
-                                                        <input type="date" name="scheduleStartDate" style="height: 25px;"/> ~
-                                                        <input type="date" name="scheduleEndDate" style="height: 25px;"/>
-                                                        <button class="btn btn-default" type="submit" style="height: 25px; font-size: 0.75em;">검색</button>　
-                                                </label>
-                                        </div>
-
-                                                                <div style="display: inline-block; margin-right: 5px; text-align: center;">
-                                                                        <table class="table table-bordered" style="width: 550px; height: 200px;">
-                                                                                <tr style="cursor: pointer;">
-                                                                                        <td class="col-md-5">전체 출석률</td>
-                                                                                        <td class="col-lg-9">72%</td>
-                                                                                </tr>
-                                                                                <tr style="cursor: pointer;">
-                                                                                        <td>공식스케줄 제외</td>
-                                                                                        <td>72%</td>
-                                                                                </tr>
-                                                                                <tr style="cursor: pointer;">
-                                                                                        <td>개인스케줄 제외</td>
-                                                                                        <td>72%</td>
-                                                                                </tr>
-                                                                                <tr style="cursor: pointer;">
-                                                                                        <td>순수 출석률</td>
-                                                                                        <td>72%</td>
-                                                                                </tr>
-                                                                        </table>
-                                                                </div>
-
-                                </div>
-
+            <div class="tab-content">
+                <div id="menu1" class="tab-pane fade in active">
+                    <div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="all" checked="checked">
+                                전체　
+                            </label>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="labs">
+                                연구실　
+                            </label>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="major">
+                                전공　
+                            </label>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="pro">
+                                지도교수　
+                            </label>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="room">
+                                프로젝트실　
+                            </label><label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="grade">
+                                학년　
+                            </label>
+                            <label>
+                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="std">
+                                학생　
+                            </label>
+                            <label>
+                                <!--<input type="text" name="key" placeholder="학번 또는 이름" value="">-->
+                                <input type="date" name="scheduleStartDate" style="height: 25px;"/> ~
+                                <input type="date" name="scheduleEndDate" style="height: 25px;"/>
+                                <button class="btn btn-default" type="submit" style="height: 25px; font-size: 0.75em;">
+                                    검색
+                                </button>
+                                　
+                            </label>
                         </div>
+                        <div>
+                            <div style="border: 1px solid #A4AABA; width: 30%; float: left; margin-left: 50px; height: 200px; overflow-y: scroll;">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>학번</th>
+                                        <th>이름</th>
+                                        <th>학년</th>
+                                        <th>전체출석률</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% rows.forEach(function(student) { %>
+                                        <tr>
+                                            <td><%= student.s_num%></td>
+                                            <td><%= student.s_name%></td>
+                                            <td><%= student.grade%></td>
+                                            <td><%= stateusP.pop()%></td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="display: inline-block; width: 60%; float: left; margin-left: 20px; text-align: center;">
+                                <table class="table table-bordered" style="width: 550px; height: 200px;">
+                                    <tr style="cursor: pointer;">
+                                        <td class="col-md-5">전체 출석률</td>
+                                        <td class="col-lg-9">59.20%</td>
+                                    </tr>
+                                    <tr style="cursor: pointer;">
+                                        <td>공식스케줄 제외</td>
+                                        <td>43.12%</td>
+                                    </tr>
+                                    <tr style="cursor: pointer;">
+                                        <td>개인스케줄 제외</td>
+                                        <td>49.11%</td>
+                                    </tr>
+                                    <tr style="cursor: pointer;">
+                                        <td>순수 출석률</td>
+                                        <td>45.11%</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <div id="menu2" class="tab-pane fade">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="all">
+                            전체　
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" value="labs">
+                            UIT 102　
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="major">
+                            UIT 202　
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="pro">
+                            UIT 302　
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="room">
+                            산학5301　
+                        </label><label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="grade">
+                            산학5302　
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios3" value="std">
+                            산학5304　
+                        </label>
+                        <label>
+                            <input type="date" name="scheduleStartDate" style="height: 25px;"/> ~
+                            <input type="date" name="scheduleEndDate" style="height: 25px;"/>
+                            <button class="btn btn-default" type="submit" style="height: 25px; font-size: 0.75em;">검색
+                            </button>
+                            　
+                        </label>
+                    </div>
+
+                    <div style="display: inline-block; margin-right: 5px; text-align: center;">
+                        <table class="table table-bordered" style="width: 550px; height: 200px;">
+                            <tr style="cursor: pointer;">
+                                <td class="col-md-5">빈자리 포함</td>
+                                <td class="col-lg-9">69.12%</td>
+                            </tr>
+                            <tr style="cursor: pointer;">
+                                <td>빈자리 제외</td>
+                                <td>80.56%</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-
-
+    </div>
 
 
 </div>

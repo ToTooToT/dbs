@@ -26,14 +26,14 @@
         </thead>
         <tbody>
         <%
-
+            rows.forEach(function(std) {
                    %>
         <tr style="cursor: pointer;">
-            <td> 20101010</td>
-            <td>김리자</td>
-            <td>50%</td>
+            <td> <%= std.s_num%></td>
+            <td><%= std.s_name%></td>
+            <td><%= stateusP.pop() %></td>
         </tr>
-        <%        %>
+        <%     });   %>
         </tbody>
     </table>
 </div>

@@ -34,7 +34,7 @@ router.post('/login', function (req, res, next) {
             if (rows[0].cnt === 1) {
                 req.session.user = rows;
                 req.session.grade = "professor";
-                res.redirect('/');
+                res.redirect('/professor');
             }
         });
         var sql = "select *, count(*) cnt from admin where admin_num=? and admin_pw=?";
