@@ -90,7 +90,7 @@ router.get('/scheduleReq/:s_num/:psn_sche_rq_date/:accept_op', function (req, re
 
 router.get('/scheduleAptA', function (req, res, next) {
     if (req.session.user) {
-        var sql = "select * from personal_schedule where accept_op = 'A'";
+        var sql = "select * from personal_schedule where accept_op = 'A' order by psn_sche_hd_date desc";
         pool.getConnection(function (err, conn) {
             conn.query(sql, function (err, rows) {
                 res.render('page/scheduleApt', {
@@ -109,7 +109,7 @@ router.get('/scheduleAptA', function (req, res, next) {
 
 router.get('/scheduleAptR', function (req, res, next) {
     if (req.session.user) {
-        var sql = "select * from personal_schedule where accept_op = 'R'";
+        var sql = "select * from personal_schedule where accept_op = 'R' order by psn_sche_hd_date desc";
         pool.getConnection(function (err, conn) {
             conn.query(sql, function (err, rows) {
                 res.render('page/scheduleApt', {
@@ -164,7 +164,7 @@ router.post('/offScheduleAdd', function (req, res, next) {
 
 router.get('/offScheduleList', function (req, res, next) {
     if (req.session.user) {
-        var sql = "select * from official_schedule o, admin a where o.admin_num = a.admin_num";
+        var sql = "select * from official_schedule o, admin a where o.admin_num = a.admin_num order by ofc_sche_start_date desc";
         pool.getConnection(function (err, conn) {
             conn.query(sql, function (err, rows) {
                 res.render('page/offScheduleList', {
