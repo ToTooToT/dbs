@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('include/head') %>
+<% include include/head %>
 
 <body>
 
 <section id="container" >
-  <%- include('include/header') %>
+        <% include include/header %>
+
   <%- include('include/sideMenu') %>
+
   <section id="main-content">
     <section class="wrapper">
       <div class="row">
         <div class="col-lg-12 main-chart" style="padding:1.5%;">
             <div class="border-head" style="">
-              <h2>공지사항</h2>
+              <h2><%= title%></h2>
             </div>
             <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
-              <%
-              switch (mode){
-                 case "view":
-                  %><%- include('page/noticeView', {row:row, writer: writer}) %><%
-                  break;
-                default :
-                  %><%- include('page/noticeList', {rows:rows}) %><%
-                  break;
-               }
-                %>
+              <%- body -%>
             </div>
           </div>
         </div>
     </section>
   </section>
 </section>
+
 <%- include('include/templateLib') %>
 </body>
 </html>

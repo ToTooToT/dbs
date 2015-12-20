@@ -1,3 +1,4 @@
+<% layout('../index') -%>
 <table class="table table-striped">
         <thead>
         <tr>
@@ -9,16 +10,6 @@
         </thead>
         <tbody>
 
-        <%
-        var i = 1;
-                  rows.forEach(function(notice){
-        %>
-        <tr onclick="location.href='/notice/<%= notice.nid %>/<%= notice.writer%>'" style="cursor: pointer;">
-                <td> <%= i++%></td>
-                <td> <%= notice.title%></td>
-                <td><%= notice.writer%></td>
-                <td><%= notice.reg_date%></td>
-        </tr>
-        <% });%>
+
         </tbody>
 </table>

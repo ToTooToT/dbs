@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var engine = require('ejs-locals');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -9,7 +10,7 @@ pool = mysql.createPool({
   connectionLimit:5,
   host:"localhost",
   user:"root",
-  password:"",
+  password:"apmsetup",
   database:"dbs"
 });
 session = require("express-session");
