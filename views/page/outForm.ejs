@@ -1,21 +1,23 @@
 <% layout('../index') %>
 <div class="border-head" style="">
-        <h2><i class="fa fa-angle-right"></i><%= title %></h2>
+    <h2><i class="fa fa-angle-right"></i><%= title %></h2>
 </div>
-<form action="" style="text-align: center;">
-        <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
-                <table class="table table-bordered">
-                        <tr>
-                                <td class="col-lg-5" style="vertical-align: middle;">퇴실사유</td>
-                                <td align="left"><textarea name="scheduleTxt" id="" style="width: 100%" rows="10"></textarea></td>
-                        </tr>
-                </table>
-                <div class="checkbox">
-                <label>
-                        <input type="checkbox" name="eqChk" style="width: 23px; height: 23px; top: -5px;" id="blankCheckbox" value="option1" aria-label="...">&nbsp;기자재 반납여부
-                </label>
-                </div><br>
-
+<form action="/student/outForm" method="post" style="text-align: center;">
+    <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
+        <table class="table table-bordered">
+            <tr>
+                <td class="col-lg-5" style="vertical-align: middle;">퇴실사유</td>
+                <td align="left"><textarea name="scheduleTxt" id="" style="width: 100%" rows="10"></textarea></td>
+            </tr>
+        </table>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="eqChk" style="width: 23px; height: 23px; top: -5px;" id="blankCheckbox"
+                       value="Y" aria-label="...">&nbsp;기자재 반납여부
+            </label>
         </div>
-        <br><button type="button" class="btn btn-success" style="width: 13%; margin: 0 auto;">완료</button>
+        <br>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success" style="width: 13%; margin: 0 auto;">완료</button>
 </form>

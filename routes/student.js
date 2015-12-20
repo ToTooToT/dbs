@@ -288,24 +288,51 @@ router.get('/schedulePresent', function (req, res, next) {
 
 
 router.get('/attendChk', function (req, res, next) {
+    if (req.session.user) {
 
-    res.render('page/attendChk', {
-        title: '출결현황',
-        name: req.session.user[0].admin_name,
-        mode: req.session.grade
-    });
-
+        res.render('page/attendChk', {
+            title: '출결현황',
+            name: req.session.user[0].admin_name,
+            mode: req.session.grade
+        });
+    } else {
+        res.redirect('/');
+    }
 });
 
 
 router.get('/outForm', function (req, res, next) {
+    if (req.session.user) {
+        res.render('page/outForm', {
+            title: '퇴실신청서',
+            name: req.session.user[0].admin_name,
+            mode: req.session.grade
+        });
+    } else {
+        res.redirect('/');
+    }
+});
 
-    res.render('page/outForm', {
-        title: '퇴실신청서',
-        name: req.session.user[0].admin_name,
-        mode: req.session.grade
-    });
-
+router.post('/outForm', function (req, res, next) {
+    if (req.session.user) {
+        var scheduleTxt = req.body.scheduleTxt;
+        var eqChk = req.body.eqChk;
+        var s_num = req.session.user[0].s_num;
+        var enter_rq_date = req.params.enter_rq_date;
+        var outData = [scheduleTxt, eqChk, s_num];
+        console.log(outData);
+        pool.getConnection(function (err, connection) {
+            var sql = "update enter_out_career set out_rq_date = now(), out_rsn = ?, equipment = ?, fc_out_op = 'N' where s_num = ? and out_hd_date is null;";
+            connection.query(sql, outData, function (err, rows) {
+                if (err) console.error("err : " + err);
+                console.log("rows : " + JSON.stringify(rows));
+                res.redirect('/student');
+            });
+            connection.release();
+        });
+    } else {
+        res.redirect('/');
+    }
 });
 
 

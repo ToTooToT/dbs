@@ -296,7 +296,7 @@ router.get('/outReqList', function (req, res, next) {
     }
 });
 
-router.get('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
+router.post('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
     if (req.session.user) {
         var s_num = req.params.s_num,
             enter_rq_date = req.params.enter_rq_date,
