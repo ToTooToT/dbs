@@ -1,48 +1,49 @@
 <% layout('../index') %>
 <div class="border-head" style="">
-        <h2><i class="fa fa-angle-right"></i><%= title %></h2>
+    <h2><i class="fa fa-angle-right"></i><%= title %></h2>
 </div>
 <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
-        <table class="table table-striped">
-                <tr>
-                        <td>
-                                기간설정 <input type="date" name="scheduleStartDate" style="height: 25px;"/>  ~  <input type="date" name="scheduleEndDate" style=" height: 25px;"/>
-                        </td>
-                        <td align="right">
-                                <input type="text" name="scheduleEndDate" style=" height: 25px;" placeholder="이름" />
-                                <button type="button" class="btn btn-primary" style="height: 25px; font-size: 0.85em;">검색</button>
-                        </td>
-                </tr>
-        </table>
+    <table class="table table-striped">
+        <tr>
+            <td>
+                기간설정 <input type="date" name="scheduleStartDate" style="height: 25px;"/> ~
+                <input type="date" name="scheduleEndDate" style=" height: 25px;"/>
+            </td>
+            <td align="right">
+                <input type="text" name="scheduleEndDate" style=" height: 25px;" placeholder="이름"/>
+                <button type="button" class="btn btn-primary" style="height: 25px; font-size: 0.85em;">검색</button>
+            </td>
+        </tr>
+    </table>
 
-        <table class="table table-striped">
-                <thead>
-                <tr>
-                        <th> 학번</th>
-                        <th>이름</th>
-                        <th>출석률</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th> 학번</th>
+            <th>이름</th>
+            <th>출석률</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
 
-                %>
-                <tr style="cursor: pointer;">
-                        <td> 20101010</td>
-                        <td>김리자</td>
-                        <td>50%</td>
-                </tr>
-                <%  %>
-                </tbody>
-        </table>
+                   %>
+        <tr style="cursor: pointer;">
+            <td> 20101010</td>
+            <td>김리자</td>
+            <td>50%</td>
+        </tr>
+        <%        %>
+        </tbody>
+    </table>
 </div>
 <table>
-        <tr>
-                <td>
-                        <input type="number" name="scheduleStartDate" style="width: 80px; height: 25px;"/> % 미만인 사람에게
-                </td>
-                <td align="right">
-                        <button type="button" class="btn btn-danger" style="height: 25px; font-size: 0.85em;">알림</button>
-                </td>
-        </tr>
+    <tr>
+        <td>
+            <input type="number" name="scheduleStartDate" style="width: 80px; height: 25px;"/> % 미만인 사람에게
+        </td>
+        <td align="right">
+            <button type="button" class="btn btn-danger" style="height: 25px; font-size: 0.85em;">알림</button>
+        </td>
+    </tr>
 </table>

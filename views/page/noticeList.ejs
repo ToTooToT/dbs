@@ -1,6 +1,11 @@
 <% layout('../index') %>
 <div class="border-head" style="">
-    <h2><i class="fa fa-angle-right"></i><%= title %></h2>
+    <h2><i class="fa fa-angle-right"></i><%= title %>
+        <% if(mode == 'student') {%>
+        <button class="logout" onclick="location.href='/student/atdTimeEnd'">출석종료</button>
+        <% } %>
+    </h2>
+
 </div>
 <div style="background: #fff; box-shadow: 1px 1px 3px 0 #A4AABA;">
     <table class="table table-striped">

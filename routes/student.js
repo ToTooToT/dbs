@@ -335,5 +335,40 @@ router.post('/outForm', function (req, res, next) {
     }
 });
 
+router.post('/atdTimeStart', function (req, res, next) {
+    var fp = req.body.fp;
+    var s_num;
+    pool.getConnection(function (err, connection) {
+        var sql = "select * from student where fp = ?";
+        connection.query(sql, [fp], function (err, rows) {
+            if (err) console.error("err : " + err);
+            s_num = rows[0].s_num;
+            console.log(s_num);
+            var sql = "insert into attendance_time values('', ?, now(), null);";
+            connection.query(sql, [s_num], function (err, rows) {
+                if (err) console.error("err : " + err);
+                console.log("rows : " + JSON.stringify(rows));
+            });
+        });
+        connection.release();
+        res.redirect('/');
+    });
+});
+
+router.get('/atdTimeEnd', function (req, res, next) {
+    var s_num = req.session.user[0].s_num;
+    pool.getConnection(function (err, connection) {
+        var sql = "update attendance_time set atd_end_time = now() where s_num = ? and atd_end_time is null;";
+        connection.query(sql, [s_num], function (err, rows) {
+            if (err) console.error("err : " + err);
+            console.log("rows : " + JSON.stringify(rows));
+        });
+        connection.release();
+        res.redirect('/users/logout');
+    });
+});
+
+
+
 
 module.exports = router;
