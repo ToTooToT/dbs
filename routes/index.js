@@ -73,13 +73,15 @@ router.get('/scheduleReq/:s_num/:psn_sche_rq_date/:accept_op', function (req, re
         var psn_sche_rq_date = req.params.psn_sche_rq_date;
         var accept_op = req.params.accept_op;
         var date = new Date();
-        var phdDate = [date, accept_op, s_num, psn_sche_rq_date]
+        var phdDate = [date, accept_op, s_num, psn_sche_rq_date];
+        console.log(phdDate);
         pool.getConnection(function (err, conn) {
             var sql = "update personal_schedule set psn_sche_hd_date = ?, accept_op = ? where s_num = ? and psn_sche_rq_date = ?";
             conn.query(sql, phdDate, function (err, rows) {
                 if(err) console.log("err : "+ err);
-                res.redirect('/scheduleReq');
+                console.log(err);
             });
+            res.redirect('/scheduleReq');
             conn.release();
         });
     } else {

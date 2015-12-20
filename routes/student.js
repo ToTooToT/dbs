@@ -225,7 +225,6 @@ router.post('/timeInsert2', function (req, res, next) {
     }
 });
 
-
 router.get('/scheduleInsert', function (req, res, next) {
     if (req.session.user) {
 
@@ -239,6 +238,30 @@ router.get('/scheduleInsert', function (req, res, next) {
     }
 });
 
+router.post('/scheduleInsert', function (req, res, next) {
+    if (req.session.user) {
+        var scheduleTxt = req.body.scheduleTxt;
+        var scheduleStartDate = req.body.scheduleStartDate;
+        var scheduleEndDate = req.body.scheduleEndDate;
+        var scheduleStartTime = req.body.scheduleStartTime;
+        var scheduleEndTime = req.body.scheduleEndTime;
+        var s_num = req.session.user[0].s_num;
+        var date = new Date();
+        var scheData = [s_num, date, scheduleStartDate, scheduleEndDate, scheduleStartTime, scheduleEndTime, scheduleTxt];
+
+        console.log(scheData);
+        pool.getConnection(function (err, connection) {
+            var sql = "insert into personal_schedule values(?, ?, null, ?, ?, ?, ?, ?, null);";
+            connection.query(sql, scheData, function (err, rows) {
+                if (err) console.error("err : " + err);
+                console.log("rows : " + JSON.stringify(rows));
+            });
+            res.redirect('/student/schedulePresent');
+        });
+    } else {
+        res.redirect('/');
+    }
+});
 
 router.get('/schedulePresent', function (req, res, next) {
     if (req.session.user) {
