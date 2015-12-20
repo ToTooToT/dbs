@@ -327,4 +327,12 @@ router.get('/scheduleInsert', function (req, res, next) {
     });
 });
 
+router.get('/warningMsg', function (req, res, next) {
+    res.render('page/warningMsg', {
+        title: '퇴실위험자 알림',
+        name: req.session.user[0].admin_name,
+        mode: req.session.grade
+    });
+});
+
 module.exports = router;
