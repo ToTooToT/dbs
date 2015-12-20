@@ -20,6 +20,7 @@ router.post('/login', function (req, res, next) {
             if (err) console.log("Error: " + err);
             if (rows[0].cnt === 1) {
                 req.session.user = rows;
+                req.session.grade = "student";
                 res.redirect('/');
             }
         });
@@ -29,6 +30,7 @@ router.post('/login', function (req, res, next) {
             if (err) console.log("Error: " + err);
             if (rows[0].cnt === 1) {
                 req.session.user = rows;
+                req.session.grade = "professor";
                 res.redirect('/');
             }
         });
@@ -38,6 +40,7 @@ router.post('/login', function (req, res, next) {
             if (err) console.log("Error: " + err);
             if (rows[0].cnt === 1) {
                 req.session.user = rows;
+                req.session.grade = "admin";
                 res.redirect('/');
                 //res.end(ejs.render(data, {data: rows}));
             }

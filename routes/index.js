@@ -3,8 +3,10 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+
     if (req.session.user) {
-        console.log(req.session.user);
+        console.log("member grade: "+req.session.grade);
+        //console.log(req.session.user);
         pool.getConnection(function (err, conn) {
             conn.query("select N.script_num as nid, N.title as title, N.reg_date as reg_date, A.admin_name as writer from notice N, admin A where N.admin_num=A.admin_num  order by reg_date desc", function (err, rows) {
                 if (err) console.log("err:" + err);
@@ -12,7 +14,8 @@ router.get('/', function (req, res, next) {
                 res.render('page/noticeList', {
                     title: '공지사항',
                     rows: rows,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -34,7 +37,8 @@ router.get('/notice/:nid/:writer', function (req, res, next) {
                     title: '공지보기',
                     row: row,
                     writer: writer,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -52,7 +56,8 @@ router.get('/scheduleReq', function (req, res, next) {
                 res.render('page/scheduleReq', {
                     title: '스케줄현황',
                     rows: rows,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -90,7 +95,8 @@ router.get('/scheduleAptA', function (req, res, next) {
                 res.render('page/scheduleApt', {
                     title: '스케줄승인현황',
                     rows: rows,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -108,7 +114,8 @@ router.get('/scheduleAptR', function (req, res, next) {
                 res.render('page/scheduleApt', {
                     title: '스케줄거절현황',
                     rows: rows,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -122,7 +129,8 @@ router.get('/offScheduleAdd', function (req, res, next) {
     if (req.session.user) {
         res.render('page/offScheduleAdd', {
             title: '공식스케줄등록',
-            name: req.session.user[0].admin_name
+            name: req.session.user[0].admin_name,
+            mode: req.session.grade
         });
     } else {
         res.render('login');
@@ -161,7 +169,8 @@ router.get('/offScheduleList', function (req, res, next) {
                 res.render('page/offScheduleList', {
                     title: '공식스케줄현황',
                     rows: rows,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -176,7 +185,8 @@ router.get('/sitAdd', function (req, res, next) {
     if (req.session.user) {
         res.render('page/sitAdd', {
             title: '학생자리등록',
-            name: req.session.user[0].admin_name
+            name: req.session.user[0].admin_name,
+            mode: req.session.grade
         });
     } else {
         res.render('login');
@@ -226,7 +236,8 @@ router.get('/enterOutList', function (req, res, next) {
                 res.render('page/enterOutList', {
                     title: '입실대기자관리',
                     rows: rows,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -273,7 +284,8 @@ router.get('/outReqList', function (req, res, next) {
                 res.render('page/outReqList', {
                     title: '퇴실대기자관리',
                     rows: rows,
-                    name: req.session.user[0].admin_name
+                    name: req.session.user[0].admin_name,
+                    mode: req.session.grade
                 });
             });
             conn.release();
@@ -292,11 +304,11 @@ router.post('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
         pool.getConnection(function (err, conn) {
             var sql = "update enter_out_career set out_hd_date = ?, fc_out_op = 'N' where s_num = ? and enter_rq_date = ?";
             conn.query(sql, eoUpdata, function (err, rows) {
-                console.log("err : "+ err);
+                console.log("err : " + err);
             });
             var sql = "update student set state = 'O' where s_num = ?";
             conn.query(sql, [s_num], function (err, rows) {
-                console.log("err : "+ err);
+                console.log("err : " + err);
             });
             res.redirect('/outReqList');
             conn.release();
@@ -304,6 +316,14 @@ router.post('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
     } else {
         res.render('login');
     }
+});
+
+router.get('/scheduleInsert', function (req, res, next) {
+    res.render('page/timeInsert', {
+        title: '시간표등록',
+        name: req.session.user[0].admin_name,
+        mode: req.session.grade
+    });
 });
 
 module.exports = router;

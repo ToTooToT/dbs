@@ -11,16 +11,17 @@ var engine = require('ejs-locals');
 
 
 pool = mysql.createPool({
-    connectionLimit: 5,
-    host: "::1",
-    user: "root",
-    password: "",
-    database: "dbs"
+    connectionLimit:5,
+  host:"::1",
+  user:"root",
+  password:"",
+  database:"dbs"
 });
 session = require("express-session");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var student = require('./routes/student');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/student', student);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
