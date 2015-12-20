@@ -41,7 +41,7 @@ router.get('/notice/:nid/:writer', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -55,19 +55,173 @@ router.get('/timeInsert', function (req, res, next) {
             mode: req.session.grade
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
-router.post('/timeInsert2', function (req, res, next) {
-    if (req.session.user) {
 
-        res.render('page/timeInsert2', {
-            title: '상주 시간등록',
-            name: req.session.user[0].s_name,
-            mode: req.session.grade
+router.post('/timeInsert', function (req, res, next) {
+    if (req.session.user) {
+        var mon = req.body.mon,
+            tue = req.body.tue,
+            wed = req.body.wed,
+            thu = req.body.thu,
+            fri = req.body.fri;
+        pool.getConnection(function (err, connection) {
+            if (mon != undefined)
+                mon.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'c', 'mon');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (tue != undefined)
+                tue.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'c', 'tue');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (wed != undefined)
+                wed.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'c', 'wed');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (thu != undefined)
+                thu.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'c', 'thu');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (fri != undefined)
+                fri.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'c', 'fri');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            res.render('page/timeInsert2', {
+                title: '상주 시간등록',
+                name: req.session.user[0].s_name,
+                mode: req.session.grade
+            });
+            connection.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
+    }
+});
+
+router.post('/timeInsert2', function (req, res, next) {
+    if (req.session.user) {
+        var mon = req.body.mon,
+            tue = req.body.tue,
+            wed = req.body.wed,
+            thu = req.body.thu,
+            fri = req.body.fri;
+        pool.getConnection(function (err, connection) {
+            if (mon != undefined)
+                mon.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'p', 'mon');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (tue != undefined)
+                tue.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'p', 'tue');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (wed != undefined)
+                wed.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'p', 'wed');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (thu != undefined)
+                thu.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'p', 'thu');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            if (fri != undefined)
+                fri.forEach(function (thisMon) {
+                    var tableData = [req.session.user[0].s_num];
+                    thisMon == '90000' ? thisMon = '090000' : thisMon = thisMon;
+                    tableData.push(thisMon);
+                    tableData.push(parseInt(thisMon) + 10000);
+                    console.log(tableData);
+                    var sql = "insert into timetable values('', ?, ?, ?, 'p', 'fri');";
+                    connection.query(sql, tableData, function (err, rows) {
+                        if (err) console.error("err : " + err);
+                        console.log("rows : " + JSON.stringify(rows));
+                    });
+                });
+            res.redirect('/student');
+            connection.release();
+        });
+    } else {
+        res.redirect('/');
     }
 });
 
@@ -81,7 +235,7 @@ router.get('/scheduleInsert', function (req, res, next) {
             mode: req.session.grade
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -95,7 +249,7 @@ router.get('/schedulePresent', function (req, res, next) {
             mode: req.session.grade
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 

@@ -44,7 +44,7 @@ router.get('/notice/:nid/:writer', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -63,7 +63,7 @@ router.get('/scheduleReq', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -83,7 +83,7 @@ router.get('/scheduleReq/:s_num/:psn_sche_rq_date/:accept_op', function (req, re
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -102,7 +102,7 @@ router.get('/scheduleAptA', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -121,7 +121,7 @@ router.get('/scheduleAptR', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -133,7 +133,7 @@ router.get('/offScheduleAdd', function (req, res, next) {
             mode: req.session.grade
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -157,7 +157,7 @@ router.post('/offScheduleAdd', function (req, res, next) {
             connection.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -176,7 +176,7 @@ router.get('/offScheduleList', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -189,7 +189,7 @@ router.get('/sitAdd', function (req, res, next) {
             mode: req.session.grade
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -224,7 +224,7 @@ router.post('/sitAdd', function (req, res, next) {
             connection.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -243,7 +243,7 @@ router.get('/enterOutList', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -272,7 +272,7 @@ router.post('/enterOutList/:s_num', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -291,7 +291,7 @@ router.get('/outReqList', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
@@ -314,7 +314,7 @@ router.post('/outReqList/:s_num/:enter_rq_date', function (req, res, next) {
             conn.release();
         });
     } else {
-        res.render('login');
+        res.redirect('/');
     }
 });
 
